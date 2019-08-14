@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: calc(100*100vw/750);
+}
+
+body {
+    font-size: 0.36rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Microsoft Yahei", sans-serif;
+    height: 40rem;
+}
+
+ul,ol,li {
+    list-style: none;
+}
+
+.head-all {
+    background-color: #4F85FE;
+    height: 3rem;
+}
+.head {
+    height: .9rem;
+    padding: .3rem .24rem  0 .3rem;
+    box-sizing: border-box;
+    line-height: 0;
+ 
+}
+
+.head img:nth-child(1) {
+    width: 1.8rem;
+    height: .48rem
+}
+
+.head img:nth-child(2) {
+    float: right;
+}
+
+.tittle ul {
+    display: flex;
+    height: .88rem;
+    justify-content: space-around;
+    font-size: 0.36rem;
+    color: #fff;
+    font-weight: 500;
+    align-items: center;
+    position: relative;
+}
+
+.tittle li:first-child {
+    border-bottom: 2px solid #67F5FF;
+    padding-bottom: .06rem;
+}
+
+.tittle li:last-child {
+    position: absolute;
+    width: .46rem;
+    height: .26rem;
+    background-color: #E15258;
+    font-size: 0.24rem;
+    border-radius: 0.16rem;
+    line-height: .26rem;
+    text-align: center;
+    top: .1rem;
+    left: 4.12rem;
+}
+
+.nav ul {
+    width: 6.9rem;
+    height: 1.9rem;
+    background-color: #fff;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+    border-radius: 0.12rem;
+    color: rgb(81, 87, 97);
+    align-items: center;
+    padding: .15rem 0;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 69, 189, 0.1) 0px 1px 6px 0px;
+}
+
+.nav ul li  {
+    width: 1.12rem;
+    height: .34rem;
+    line-height: 0.34rem;
+    font-size: .32rem;
+    text-align: center;
+}
+
+
+.news {
+    margin: 0 auto;
+    width: 6.9rem;
+    border-bottom: 1px solid  rgb(240, 240, 240);
+    padding: 0.24rem 0px;
+}
+
+.news1 {
+    margin-top: 0.72rem;
+}
+
+.news h4 {
+    font-size: 0.36rem;
+    font-weight: normal;
+    margin-bottom: .04rem;
+}
+
+.news div {
+    font-size: 0.24rem;
+}
+
+.news span  {
+    color: rgb(130, 140, 155);
+    margin-right: .09rem;
+}
+
+.news span:nth-child(1) {
+    color: #EE544A;
+    margin-right: .12rem;
+}
+
+.news3 .zt {
+    display: flex;
+    align-items: center;
+}
+
+.news3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.news3 .zt span {
+    height: 0.36rem;
+    line-height: 0.36rem;
+    background-color: rgb(76, 126, 255);
+    color: #fff;
+    padding: 0px 0.08rem;
+    border-radius: 0.04rem;
+}
+
+.news3 .bottom {
+    margin: 0.35rem 0 0;
+}
+
+.news3 img {
+    width: 2.22rem;
+    height: 1.46rem;
+    border-radius: 0.1rem;
+}
+
+.news5 .zt {
+    align-items: flex-start;
+}
+
+.bottom .ad {
+    color: #4F85FE;
+}
+
+.adp {
+    margin: 0.1rem 0 ;
+}
+
+.news3 .adp+div {
+    margin: 0;
+}
+
+.new9 .adp img{
+    width: 100%;
+    height: 3.88rem;
+}
+
+.middle {
+    line-height: .92rem;
+    color: rgb(80, 118, 245);
+    font-size: .32rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.middle  span {
+    border: .18rem solid transparent;
+    border-top-color: rgb(80, 118, 245);
+    position: absolute;
+    top: .4rem;
+    right: 36%;
+}
+
+.middle  span.white {
+    border-top-color: #fff;
+    top: 0.36rem;
+}
+
+.spacer {
+    width: 100%;
+    height: 6px;
+    background: rgb(247, 248, 250);
+}
+
+.app {
+    margin: 0 auto;
+    width: 6.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.32rem;
+    padding: 0.2rem 0.3rem;
+    border-bottom: 1px dotted rgb(240, 240, 240);
+}
+
+.app div { 
+    display: flex;
+    align-items: center;
+}
+
+.app div img {
+    margin-right: 0.2rem;
+}
+
+.app>span  {
+    width: 1.28rem;
+    height: 0.556rem;
+    line-height: 0.54rem;
+    color: rgb(83, 123, 255);
+    border: 1px solid rgb(83, 123, 255);
+    text-align: center;
+    border-radius: 0.3rem;
+}
+
+.app+div {
+    margin: 0 auto;
+    width: 6.9rem;
+    font-size: 0.3rem;
+}
+
+.app+div li {
+   line-height: .96rem;
+   border-bottom: 1px dotted rgb(240, 240, 240);
+}
+
+.app+div span {
+    font-size: 0.26rem;
+    color: rgb(130, 140, 155);
+    margin-left: 0.1rem;
+}
+
+.app+div li::before {
+    content: "";
+    display: inline-block;
+    width: 0.48rem;
+    height: 0.96rem;
+    margin-right: 0.18rem;
+    vertical-align: middle;
+    background: url(https://mat1.gtimg.com/pingjs/ext2020/xw-article-icons/topic_icon.svg) center center no-repeat;
+}
+
+.app+div li.last {
+    border: 0;
+    text-align: center;
+    color: rgb(83, 123, 255);
+}
+.app+div li.last:before {
+    display: inline;
+}
+
+.fixed ul{
+    position: fixed;
+    right: .2rem;
+    bottom: 0.5rem;
+    height: 2.9rem;
+    display: flex;
+    flex-flow:column;
+}
+
+.fixed li {
+    content: "";
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    background-size: auto 0.4rem;
+    background-repeat: no-repeat;
+    width: .6rem;
+    height: .7rem;
+    padding: 0 0.05rem;
+}
+
+.fixed li:nth-child(1) {
+    margin-bottom: 0.2rem;
+    background-color: rgba(214, 242, 255, 0.95);
+    background-position: 0.08rem center;
+    background-image: url(https://mat1.gtimg.com/www/mobi/2017/image/elevator_icons_v4.svg);
+}
+
+.fixed li:nth-child(2) {
+    background-color: rgba(214, 242, 255, 0.95);
+    background-position: -0.5rem center; 
+    background-image: url(https://mat1.gtimg.com/www/mobi/2017/image/elevator_icons_v4.svg);
+}
+
+.fixed li:nth-child(2) a {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
