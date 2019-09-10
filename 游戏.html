@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .box {
+            width: 880px;
+            height: 660px;
+            background-color: green;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin: auto;
+            font-size:0 
+        }
+
+        .left{
+            height: 660px;
+            width: 220px;
+            box-sizing: border-box;
+            background-color: green;
+            border: 2px solid brown;
+            float: left;
+            font-size: 20px;
+            color: rgb(163, 143, 28);
+            font-weight: bold;
+            background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568105495054&di=1144c077570dfabe456b4d618de9f946&imgtype=0&src=http%3A%2F%2F03imgmini.eastday.com%2Fmobile%2F20181018%2F20181018212956_61bf1a445afd7fea74fd4a835990dac9_1.jpeg);
+            background-size: cover;
+            background-position: 68% 0;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+
+        .gamebox{
+            width: 660px;
+            height: 660px;
+            float: left;
+        }
+
+        .left img {
+            width: 45px;
+            height: 45px;
+            border-radius: 9px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .left p {
+            line-height: 45px;
+            vertical-align: middle;
+            text-align: center;
+           
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="gamebox"></div>
+        <div class="left">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/2.png">&nbsp;攻击力:<span id="attack">0</span></p>
+            <p><img src="img/3.png">&nbsp; hp:<span id="hp">0</span></p>
+            <p><img src="img/12.jpg">&nbsp;钥匙：<span id="key">0</span></p>
+        </div>
+    </div>
+    
+
+    <script>
+    
+        class Game{
+            constructor(gamebox){
+                this.gamebox = gamebox;
+                this.gameboxwidth=parseInt(getComputedStyle(gamebox,null).width)   //获取样式方法
+                // console.log(getComputedStyle(gamebox,null).width)   //660px
+                this.gameboxheight=parseInt(getComputedStyle(gamebox,null).height)
+                this.array1=[
+                    [10,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,4,0,0,0,0],
+                    [0,0,0,0,0,4,9,4,0,0,0],
+                    [0,0,0,0,4,0,0,0,4,4,0],
+                    [0,6,6,6,0,0,4,5,5,4,0],
+                    [0,0,0,0,4,3,4,0,0,4,0],
+                    [0,0,0,0,4,4,4,4,3,4,0],
+                    [4,8,4,4,3,7,9,4,3,4,0],
+                    [0,0,0,0,9,7,3,4,9,4,0],
+                    [4,4,4,4,4,0,4,4,4,4,0],
+                    [0,0,0,0,0,2,0,0,0,0,0],
+                ]
+                this.array2=[
+                    [0,0,0,0,0,0,0,0,0,0,10],
+                    [0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,9,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,4,0],
+                    [0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,4,4,4,0,4,4,4,0,0],
+                    [0,0,4,9,4,5,4,9,4,0,0],
+                    [4,0,4,4,4,12,4,4,4,0,0],
+                    [0,0,4,0,4,0,4,0,4,0,0],
+                    [0,0,0,0,4,9,4,0,4,0,0],
+                    [11,0,0,0,4,2,4,0,0,0,0],
+                ]
+                this.array3=[
+                    [0,0,0,0,0,0,0,0,0,0,10],
+                    [0,0,0,4,0,0,0,4,0,0,0],
+                    [0,0,4,9,4,0,4,9,4,0,0],
+                    [0,4,9,0,9,4,9,0,9,4,0],
+                    [0,0,4,9,0,9,0,9,4,0,0],
+                    [0,0,0,4,9,12,9,4,0,0,0],
+                    [0,0,0,0,4,9,4,0,0,0,0],
+                    [0,0,0,0,0,8,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0],
+                    [11,0,0,0,0,2,0,0,0,0,0],
+                ]
+                this.array4=[
+                    [2,0,0,0,0,0,0,0,0,0,10],
+                    [0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,4,0,0,0,0,0],
+                    [0,0,0,0,4,3,4,0,0,0,0],
+                    [0,0,0,4,3,12,3,4,0,0,0],
+                    [0,0,4,3,0,3,0,3,4,0,0],
+                    [0,4,3,0,3,8,3,0,3,4,0],
+                    [0,0,4,3,4,0,4,3,4,0,0],
+                    [0,0,0,4,0,0,0,4,0,0,0],
+                    [11,0,0,0,0,0,0,0,0,0,0],
+                ]
+                this.array5=[
+                    [10,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,4,0,0,0,4,0,0,0],
+                    [0,0,4,9,4,0,4,9,4,0,0],
+                    [0,4,9,0,9,8,9,0,9,4,0],
+                    [0,0,4,9,0,9,0,9,4,0,0],
+                    [0,0,0,4,9,12,9,4,0,0,0],
+                    [0,0,0,0,4,9,4,0,0,0,0],
+                    [0,0,0,0,0,4,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,2,0,0,0,0,11],
+                ]
+                this.array6=[
+                    [12,0,0,0,0,0,0,0,0,0,10],
+                    [0,0,0,4,0,0,0,4,0,0,0],
+                    [0,0,4,9,4,0,4,9,4,0,0],
+                    [0,4,9,0,9,8,9,0,9,4,0],
+                    [0,0,4,9,0,9,0,9,4,0,0],
+                    [0,0,0,4,9,0,9,4,0,0,0],
+                    [0,0,0,0,4,9,4,0,0,0,0],
+                    [0,0,0,0,0,4,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0],
+                    [11,0,0,0,0,2,0,0,0,0,0],
+                ]
+                this.arrayall=[this.array1,this.array2,this.array3,this.array4,this.array5,this.array6]
+                this.floor = 0;
+                this.array=this.arrayall[this.floor]
+                this.initialization = this.getheroposition()
+                //英雄属性
+                this.heroProps = {
+                    hp:100,
+                    attack:100,
+                    key:0
+                }
+                //红药品的属性
+                this.redmedicine = {
+                    hp:10
+                }
+                //红宝石的属性
+                this.reddiamond = {
+                    attack:10
+                }
+                //怪物1的属性
+                this.monster1 = {
+                    attack:10,
+                    hp:100,
+                    defend:120
+                }
+                 //怪物7的属
+                this.monster7 = {
+                    attack:10,
+                    hp:100,
+                    defend:500
+                }
+                this.key = {
+                    key:1
+                }
+            }
+
+            setMap(){
+                console.log(this.gameboxwidth);
+                console.log(this.gameboxheight);
+                this.gamebox.innerHTML=''
+                for(let i=0;i<this.array.length;i++){
+                    for(let j=0;j<this.array[i].length;j++){
+                        console.log(this.array[i][j])
+                        var dom=document.createElement('img')
+                        var domHeight = this.gameboxheight/this.array.length
+                        var domWidth = this.gameboxwidth/this.array[i].length
+                        dom.style.width = domWidth+'px';
+                        dom.style.height = domHeight+'px';
+                        if(this.array[i][j]==0){
+                            dom.src='img/1.png'
+                        }else if(this.array[i][j]==2){
+                            dom.src='img/2.png'
+                        }else if(this.array[i][j]==3){
+                            dom.src='img/3.png'
+                        }else if(this.array[i][j]==4){
+                            dom.src='img/qiang.png'
+                        }
+                        else if(this.array[i][j]==5){
+                            dom.src='img/g1.png'
+                        }
+                        else if(this.array[i][j]==6){
+                            dom.src='img/g2.png'
+                        }
+                        else if(this.array[i][j]==7){
+                            dom.src='img/g3.png'
+                        }else if(this.array[i][j]==9){
+                            dom.src='img/6.png'
+                        }else if(this.array[i][j]==8){
+                            dom.src='img/men.png'
+                        }else if(this.array[i][j]==10){
+                            dom.src='img/tizi.png'
+                        }else if(this.array[i][j]==11){
+                            dom.src='img/tizi.png'
+                        }else if(this.array[i][j]==12){
+                            dom.src='img/12.jpg'
+                        }
+                        this.gamebox.appendChild(dom)
+                    }
+                }
+            }
+
+            //判定边界
+            jungdeg(prei,prej,i,j){
+                if(i<0||i>this.array.length-1||j<0||j>this.array[i].length-1){
+                    return false
+                }else{
+                   if(this.meetAll(prei,prej,i,j)){
+                       return true
+                   }else{
+                       return false
+                   }
+                }
+            }
+
+            //判定物品和墙壁及其他
+            meetAll(prei,prej,i,j){
+                if(this.array[i][j]==4){
+                    return false
+                }else if(this.array[i][j]==9){    //宝石
+                    this.array[i][j] = 0;
+                    this.heroProps.attack+=this.reddiamond.attack
+                    this.load()
+                    return true
+                }else if(this.array[i][j]==5||this.array[i][j]==6){     //遇到5号怪
+                    if(this.heroProps.attack>this.monster1.defend){
+                        this.array[i][j]=0;
+                        this.heroProps.attack+=10;
+                        this.heroProps.hp-=10
+                        this.load()
+                        return true
+                    }else{
+                        if(this.floor>0){
+                            this.floor = 0;
+                            this.array = this.arrayall[this.floor]
+                            this.array[prei][prej] = 0;
+                            // this.array[i][j] = 0;
+                            // this.array[this.initialization.i][this.initialization.j]=2;
+                            this.setMap()
+                        }
+                        
+                        return false
+                    }
+                }else if(this.array[i][j]==7){     //遇到7号怪
+                    if(this.heroProps.attack>this.monster7.defend){
+                        this.array[i][j]=0;
+                        this.heroProps.attack+=1000;
+                        this.heroProps.hp-=100
+                        this.load()
+                        alert('你牛皮，够无聊~');
+                        prompt('留下大名');
+                        return true
+                    }else{
+                        if(this.floor>=0){
+                            this.floor = 0;
+                            this.array = this.arrayall[this.floor]
+                            this.array[prei][prej] = 0;
+                            // this.array[i][j] = 0;
+                            this.array[this.initialization.i][this.initialization.j]=2;
+                            this.setMap()
+                        }
+                        
+                        return false
+                    }
+                    }else if(this.array[i][j]==3){     //遇到血药
+                    this.array[i][j] = 0,
+                    this.heroProps.hp+=this.redmedicine.hp
+                    this.load()
+                    return true
+                }else if(this.array[i][j]==10){   //上楼梯
+                    if(this.floor>=0 && this.floor<this.arrayall.length-1){
+                        this.floor++;
+                        this.array=this.arrayall[this.floor];
+                        this.setMap();
+                    }
+                        return false
+                }else if(this.array[i][j]==11){   //下楼梯
+                    if(this.floor>0){
+                        this.floor--;
+                        this.array=this.arrayall[this.floor];
+                        this.setMap();
+                    }
+                        return false
+                }else if(this.array[i][j]==8){     //遇到门
+                    if(this.heroProps.key>0){
+                     this.array[i][j]=0
+                     this.heroProps.key--;
+                     this.load()
+                     this.array[i][j]=4;
+                    }else{
+                        return false
+                    }
+                    return true
+                }else if(this.array[i][j]==12){     //遇到钥匙
+                    this.array[i][j] = 0,
+                    this.heroProps.key+=this.key.key
+                    this.load()
+                    return true
+                }else{
+                    return true
+                }
+            }
+
+            //刷新属性到界面
+            load(){
+                var hpdom=document.getElementById('hp');
+                var attackdom=document.getElementById('attack');
+                var key=document.getElementById('key');
+                key.innerHTML = this.heroProps.key;
+                hpdom.innerHTML = this.heroProps.hp;
+                attackdom.innerHTML=this.heroProps.attack
+
+            }
+
+            //寻找英雄的位置
+            getheroposition(){
+                for (let i=0;i<this.array.length;i++){
+                    for(let j=0;j<this.array[i].length;j++){
+                        if(this.array[i][j]==2){
+                            return {            //返回一个对象，  可以用.i .j来操作 
+                                i:i,
+                                j:j
+                            }
+                        }
+                    }
+                }
+            }
+
+            //交换位置
+            changeposition(i,j,nexti,nextj){
+                if(this.jungdeg(i,j,nexti,nextj)){
+                    var temp=this.array[i][j];
+                    this.array[i][j]=this.array[nexti][nextj];
+                    this.array[nexti][nextj] = temp;
+                    this.setMap()
+                }else{
+                    console.log('超出边界')
+                }
+            }
+
+            //移动的主函数
+            move(){
+                console.log(this)
+                window.onkeydown = function(e){
+                // console.log(this)
+                // this.gamebox.innerHTML=''
+                    var heroP=this.getheroposition();
+                    var heroPI = heroP.i;
+                    var heroPJ = heroP.j;
+                    if(e.keyCode == 37){
+                        console.log('向左')
+                        this.changeposition(heroPI,heroPJ,heroPI,heroPJ-1)
+                    }else if(e.keyCode == 38){
+                        console.log('向上')
+                        this.changeposition(heroPI,heroPJ,heroPI-1,heroPJ)
+                    }else if (e.keyCode == 39) {
+                        console.log('向右')
+                        this.changeposition(heroPI, heroPJ, heroPI, heroPJ + 1)
+                    } else if (e.keyCode == 40) {
+                        console.log('向下')
+                        this.changeposition(heroPI, heroPJ, heroPI + 1, heroPJ)
+                    }
+                }.bind(this)
+            }
+
+            //开始游戏
+            init(){
+                this.setMap()
+                this.load()
+                this.move()
+            }
+        }
+        
+        var gamebox=document.getElementsByClassName('gamebox')[0];
+        var newGame = new Game(gamebox)
+        newGame.init();
+        
+    </script>
+</body>
+</html>
