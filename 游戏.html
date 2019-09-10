@@ -324,8 +324,9 @@
                      this.array[i][j]=0
                      this.heroProps.key--;
                      this.load()
-                    
+                    if(this.heroProps.key<=0){
                      this.array[i][j]=4;
+                    }
                     }else{
                         return false
                     }
